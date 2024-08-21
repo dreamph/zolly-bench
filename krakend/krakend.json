@@ -1,0 +1,43 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "KrakenD - API Gateway",
+  "extra_config": {
+    "telemetry/logging": {
+      "level": "INFO",
+      "prefix": "[KRAKEND]",
+      "syslog": false,
+      "stdout": false
+    },
+    "router":{
+      "disable_access_log": true
+    }
+  },
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "endpoints": [
+    {
+      "endpoint": "/v1/hello",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/v1/hello",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://localhost:8000"
+          ]
+        }
+      ]
+    }
+  ],
+  "output_encoding": "json",
+  "read_timeout": "30s",
+  "write_timeout": "30s",
+  "idle_timeout": "30s",
+  "read_header_timeout": "30s",
+  "idle_connection_timeout": "100s",
+  "response_header_timeout": "100s",
+  "expect_continue_timeout": "100s"
+}

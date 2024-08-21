@@ -1,0 +1,8 @@
+server:
+  port: 8070
+services:
+  - path: "/"
+    stripPath: false
+    timeout: 60
+    servers:
+      - "http://localhost:8000"
